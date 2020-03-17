@@ -22,3 +22,15 @@ string Block::get_data() {
   return this->data;
 }
 
+string Block::get_hash() {
+  return this->hash;
+}
+
+string Block::get_previous_hash() {
+  return this->previous_hash;
+}
+
+time_t Block::get_time() {
+  return this->timestamp;
+}
+
