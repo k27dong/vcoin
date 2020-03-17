@@ -11,7 +11,7 @@ EXENAME = vc
 GREEN = \033[92m
 RESET = \033[0m
 
-cue: clean $(SDIR)/*.cpp $(HDIR)/*.h install
+cue: clean init $(SDIR)/*.cpp $(HDIR)/*.h install
 	$(CC) -c $(SDIR)/*.cpp
 	$(MOVE) *.o $(ODIR)/
 	$(CC) $(ODIR)/*.o -o $(EXENAME)
