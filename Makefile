@@ -15,14 +15,16 @@ cue: clean $(SDIR)/*.cpp $(HDIR)/*.h install
 	$(CC) -c $(SDIR)/*.cpp
 	$(MOVE) *.o $(ODIR)/
 	$(CC) $(ODIR)/*.o -o $(EXENAME)
-	@mv $(EXENAME) $(BDIR)/
+	$(MOVE) $(EXENAME) $(BDIR)/
 	@echo "$(GREEN)success💡$(RESET)"
 
 run: cue
 	./$(EXENAME)
 
-color:
-	@echo "$(GREEN)Hello World$(RESET)"
+init:
+	mkdir $(BDIR)
+	mkdir $(ODIR)
+	mkdir $(LDIR)
 
 install:
 	@echo "downloading dependencies ..."
@@ -33,6 +35,6 @@ install:
 	@cd $(LDIR)/; git clone https://github.com/Gaaagaa/ntp_client.git -q
 
 clean:
-	$(REMOVE) -rf $(LDIR)/*
-	$(REMOVE) -rf $(ODIR)/*
-	$(REMOVE) -rf $(BDIR)/*
+	$(REMOVE) -rf $(LDIR)
+	$(REMOVE) -rf $(ODIR)
+	$(REMOVE) -rf $(BDIR)
