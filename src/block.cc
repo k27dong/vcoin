@@ -1,20 +1,24 @@
 #include "../include/block.h"
 
 Block::Block(
-  unsigned int index,
+  long index,
+  long difficulty,
+  long nonce,
   string hash,
   string previous_hash,
   time_t timestamp,
   string data
 ) {
   this->index = index;
+  this->difficulty = difficulty;
+  this->nonce = nonce;
   this->hash = hash;
   this->previous_hash = previous_hash;
   this->timestamp = timestamp;
   this->data = data;
 }
 
-unsigned int Block::get_index() {
+long Block::get_index() {
   return this->index;
 }
 
@@ -34,3 +38,10 @@ time_t Block::get_time() {
   return this->timestamp;
 }
 
+long Block::get_difficulty() {
+  return this->difficulty;
+}
+
+long Block::get_nonce() {
+  return this->nonce;
+}

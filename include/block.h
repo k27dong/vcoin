@@ -2,20 +2,24 @@
 
 class Block {
   private:
-    unsigned int index;
+    long index, difficulty, nonce;
     string hash, previous_hash, data;
     time_t timestamp;
   public:
     Block(
-      unsigned int index,
+      long index,
+      long difficulty,
+      long nonce,
       string hash,
       string previous_hash,
       time_t timestamp,
       string data
     );
-    unsigned int get_index();
+    long get_index();
     string get_data();
     string get_hash();
     string get_previous_hash();
     time_t get_time();
+    long get_difficulty();
+    long get_nonce();
 };

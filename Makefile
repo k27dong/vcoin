@@ -11,28 +11,39 @@ EXENAME = vc
 GREEN = \033[92m
 RESET = \033[0m
 
-cue: clean init $(SDIR)/*.cpp $(HDIR)/*.h install
-	$(CC) -c $(SDIR)/*.cpp
+# cue:
+
+cue: clean init $(SDIR)/*.cc $(HDIR)/*.h install
+	$(CC) -c $(SDIR)/*.cc
 	$(MOVE) *.o $(ODIR)/
 	$(CC) $(ODIR)/*.o -o $(EXENAME)
 	$(MOVE) $(EXENAME) $(BDIR)/
 	@echo "$(GREEN)success💡$(RESET)"
 
 run: cue
-	./$(EXENAME)
+	@cd $(BDIR); ./$(EXENAME)
 
 init:
-	mkdir $(BDIR)
-	mkdir $(ODIR)
-	mkdir $(LDIR)
+	@mkdir $(BDIR)
+	@mkdir $(ODIR)
+	@mkdir $(LDIR)
 
-install:
+install: init
 	@echo "downloading dependencies ..."
-	# sha256
+# sha256
 	@cd $(LDIR)/; git clone https://github.com/okdshin/PicoSHA2.git -q
 	@cd $(LDIR)/PicoSHA2; rm -rf test/ example/ README.md
-	# ntp time
+# ntp time
 	@cd $(LDIR)/; git clone https://github.com/Gaaagaa/ntp_client.git -q
+# bprinter
+	@cd $(LDIR)/; git clone https://github.com/dattanchu/bprinter.git -q
+# libtable
+	@cd $(LDIR)/; git clone https://github.com/marchelzo/libtable.git -q
+# tableprinter
+	@cd $(LDIR)/; git clone https://github.com/tangwing/TablePrinter.git -q
+# table
+	@cd $(LDIR)/; git clone https://github.com/boopr/table.git -q
+
 
 clean:
 	$(REMOVE) -rf $(LDIR)
