@@ -5,7 +5,6 @@ class Chain {
     Block* genesis_block;
     Block* latest;
     vector<Block*> bc;
-    long difficulty;
   public:
     Chain();
     ~Chain();

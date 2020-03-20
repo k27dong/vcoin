@@ -1,13 +1,15 @@
 #include "../include/chain.h"
 
-int main(void)
-{
-  Chain *c = new Chain();
+void adder(int s);
+Chain *c = new Chain();
 
-  // while (c->get_size() < 2) {
-  //   c->generate_next_block("something");
-  // }
+int main(void) {
+  adder(100);
+  std::cout << c->get_size();
+}
 
-  // std::cout << c->get_size() << std::endl;
-  // c->print_chain();
+void adder(int s) {
+  for (int i = 0; i < s; i++) {
+    c->generate_next_block("hakla");
+  }
 }

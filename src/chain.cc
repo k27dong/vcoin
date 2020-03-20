@@ -31,9 +31,9 @@ Block* Chain::get_latest_block() {
 
 Block* Chain::generate_next_block(string data) {
   Block* prev_block = this->get_latest_block();
-  long next_index = prev_block->get_index();
+  long next_index = prev_block->get_index() + 1;
   time_t next_time = time(0);
-  long difficulty = this->genesis_block->get_difficulty();
+  long difficulty = this->get_difficulty(this->bc);
   // string next_hash = this->calculate_hash(next_index, prev_block->get_hash(), data, next_time);
   Block* new_block = this->find_block(next_index, prev_block->get_hash(), next_time, data, difficulty);
   this->add_block(new_block);
@@ -44,8 +44,8 @@ void Chain::add_block(Block* new_block) {
   if (this->is_valid_new_block(new_block, this->latest)) {
     this->latest = new_block;
     this->bc.push_back(new_block);
+    this->print_block(new_block);
   }
-  this->print_block(new_block);
 }
 
 string Chain::calculate_hash_for_block(Block* b) {
@@ -61,7 +61,7 @@ int Chain::is_valid_new_block(Block* next, Block* prev) {
     // invalid hash match
     return false;
   }
-  if (this->calculate_hash_for_block(next) != next->get_hash()) {
+  if (this->calculate_hash_for_block(next).compare(next->get_hash()) != 0) {
     // invalid hash content
     return false;
   }
@@ -127,8 +127,10 @@ Block* Chain::find_block(long index, string previous_hash, time_t time, string d
   string hash = "";
   do {
     hash = calculate_hash(index, previous_hash, data, time, difficulty, nonce);
+    nonce++;
   }
-  while(!this->hash_matches_difficulty(hash, this->difficulty));
+  while(!this->hash_matches_difficulty(hash, difficulty));
+  nonce--;
   return new Block(index, difficulty, nonce, hash, previous_hash, time, data);
 }
 
@@ -184,6 +186,9 @@ int Chain::is_valid_time(Block* next, Block* prev) {
 
 void Chain::print_block(Block* b) {
   // std::cout << b->get_hash() << std::endl;
+  if (this->get_size() > 70) {
+    std::cout << this->get_size() << "\n";
+  }
 }
 
 void Chain::print_chain() {

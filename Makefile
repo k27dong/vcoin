@@ -11,14 +11,15 @@ EXENAME = vc
 GREEN = \033[92m
 RESET = \033[0m
 
-# cue:
-
 cue: clean init $(SDIR)/*.cc $(HDIR)/*.h install
 	$(CC) -c $(SDIR)/*.cc
 	$(MOVE) *.o $(ODIR)/
 	$(CC) $(ODIR)/*.o -o $(EXENAME)
 	$(MOVE) $(EXENAME) $(BDIR)/
 	@echo "$(GREEN)success💡$(RESET)"
+
+debug: clean init $(SDIR)/*.cc $(HDIR)/*.h install
+	$(CC) -g $(SDIR)/*.cc -o $(EXENAME)
 
 run: cue
 	@cd $(BDIR); ./$(EXENAME)
