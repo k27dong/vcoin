@@ -20,6 +20,7 @@ class Chain {
     string calculate_hash_for_block(Block*);
     Block* generate_next_block(string block_data);
     Block* get_latest_block();
+    long get_accumulated_difficulty(vector<Block*>);
     void add_block(Block*);
     int is_valid_new_block(Block* next, Block* prev);
     int is_valid_chain(vector<Block*> chain);

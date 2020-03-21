@@ -1,11 +1,13 @@
 #include <iostream>
 #include <time.h>
 #include <vector>
+#include <cmath>
 
 #include "../lib/PicoSHA2/picosha2.h"
 
 using std::string;
 using std::vector;
+using std::pow;
 using std::to_string;
 using picosha2::hash256_hex_string;
 

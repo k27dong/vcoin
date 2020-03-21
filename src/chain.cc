@@ -102,7 +102,10 @@ int Chain::is_valid_hash(Block* b) {
 }
 
 void Chain::replace_chain(vector<Block*> new_chain) {
-  if (this->is_valid_chain(new_chain) && new_chain.size() > this->bc.size()) {
+  if (
+    this->is_valid_chain(new_chain) &&
+    this->get_accumulated_difficulty(new_chain) > this->get_accumulated_difficulty(this->bc)
+  ) {
     // accept the newer chain
     this->bc = new_chain; // TODO: memory leak?
     // broadcase_latest();
@@ -182,6 +185,14 @@ int Chain::is_valid_time(Block* next, Block* prev) {
     (prev->get_time() - 60 < next->get_time()) &&
     (next->get_time() - 60 < time(0))
   );
+}
+
+long Chain::get_accumulated_difficulty(vector<Block*> chain) {
+  long accumulated_difficulty = 0;
+  for (vector<Block*>::iterator itvec = chain.begin(); itvec != chain.end(); itvec++) {
+    accumulated_difficulty += pow(2, (*itvec)->get_difficulty());
+  }
+  return accumulated_difficulty;
 }
 
 void Chain::print_block(Block* b) {
