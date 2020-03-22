@@ -53,6 +53,9 @@ install: init
 	@cd $(LDIR)/PicoSHA2; rm -rf test/ example/ README.md
 # ntp time
 	@cd $(LDIR)/; git clone https://github.com/Gaaagaa/ntp_client.git -q
+# RSA
+	@cd $(LDIR)/; git clone https://github.com/cassvin/Rsa.git -q
+	@cd $(LDIR)/Rsa/; g++ -c *.cpp && mv rsa.o ../../ && rm *.o
 	@echo -e -n "\tdone\t"
 	@$(ETIME)
 

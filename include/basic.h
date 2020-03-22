@@ -4,6 +4,7 @@
 #include <cmath>
 
 #include "../lib/PicoSHA2/picosha2.h"
+#include "../lib/Rsa/rsa.h"
 
 using std::string;
 using std::vector;

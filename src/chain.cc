@@ -196,21 +196,9 @@ long Chain::get_accumulated_difficulty(vector<Block*> chain) {
 }
 
 void Chain::print_block(Block* b) {
-  // std::cout << b->get_hash() << std::endl;
-  if (this->get_size() > 70) {
-    std::cout << this->get_size() << "\n";
-  }
+
 }
 
 void Chain::print_chain() {
-  // TablePrinter tp(&std::cout);
-  // tp.AddColumn("index", 10);
-  // tp.AddColumn("hash", 20);
-  // tp.AddColumn("data", 20);
-  // tp.AddColumn("time", 10);
-  // tp.AddColumn("difficulty", 10);
-  // tp.PrintHeader();
-  // for (vector<Block*>::iterator itvec = this->bc.begin(); itvec != this->bc.end(); itvec++) {
-  //   tp << (*itvec)->get_index() << (*itvec)->get_hash() << (*itvec)->get_data() << (*itvec)->get_time() << (*itvec)->get_difficulty();
-  // }
+
 }
