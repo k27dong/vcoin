@@ -9,3 +9,7 @@ a simple blockchain-based cryptocurrency implementation.
 
 ## Instructions
 Under the root directory: `$ make run`
+
+## Acknowledge
+[PicoSHA2](https://github.com/okdshin/PicoSHA2.git) \
+[RSA](https://github.com/cassvin/Rsa.git)
